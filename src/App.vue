@@ -1,28 +1,24 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" v-on:mousemove="callChildMethod()">
+    <Mausestalker ref="child"></Mausestalker>
+    <Header></Header>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header.vue'
+import Mausestalker from './components/mouseStalker.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    Mausestalker
+  },
+  methods: {
+    callChildMethod () {
+      this.$refs.child.getCursorCoordinate(event)
+    }
   }
 }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
